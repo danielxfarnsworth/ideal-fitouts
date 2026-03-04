@@ -3,280 +3,1598 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ideal Fitouts | Office - Retail - Education | Commercial Fitouts Auckland</title>
-  <meta name="description" content="Commercial Fitout Specialists in Auckland, New Zealand. 18+ years experience in Office, Retail, and Education fit-outs. Pasifika-owned, AMOTAI certified." />
+  <title>Ideal Fitouts | Commercial Fitout Specialists Auckland</title>
+  <meta name="description" content="Dark industrial premium commercial fitout specialists in Auckland. Office, Retail, Education spaces built with 18+ years of craftsmanship." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS
+       ============================================================ */
+    :root {
+      --bg: #0D0D0D;
+      --bg-elevated: #161616;
+      --bg-card: #1A1A1A;
+      --accent: #C8A96E;
+      --accent-hover: #D4BA85;
+      --text: #F5F5F5;
+      --text-muted: #999999;
+      --text-dim: #666666;
+      --border: #2A2A2A;
+      --radius: 12px;
+      --radius-lg: 20px;
+      --radius-pill: 999px;
+      --font-heading: 'Bebas Neue', 'Arial Black', sans-serif;
+      --font-body: 'DM Sans', 'Helvetica Neue', sans-serif;
+      --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --transition: 0.3s var(--ease);
+    }
+
+    /* ============================================================
+       RESET & BASE
+       ============================================================ */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; cursor: pointer; border: none; background: none; }
+
+    /* ============================================================
+       NOISE OVERLAY
+       ============================================================ */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.03;
+      background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 128px 128px;
+    }
+
+    /* ============================================================
+       UTILITIES
+       ============================================================ */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .label {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .section-pad {
+      padding: 120px 0;
+    }
+
+    .text-center { text-align: center; }
+
+    /* ============================================================
+       SCROLL REVEAL
+       ============================================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       NAVBAR — Floating Pill
+       ============================================================ */
+    .nav {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      background: rgba(13, 13, 13, 0.6);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      transition: background var(--transition), box-shadow var(--transition);
+    }
+    .nav.scrolled {
+      background: rgba(13, 13, 13, 0.92);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+    .nav-logo {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: 16px;
+    }
+    .nav-links a {
+      font-size: 0.875rem;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      color: var(--text-muted);
+      transition: color var(--transition), background var(--transition);
+      white-space: nowrap;
+    }
+    .nav-links a:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.06);
+    }
+    .nav-cta {
+      margin-left: 8px;
+      padding: 10px 24px;
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 700;
+      font-size: 0.875rem;
+      border-radius: var(--radius-pill);
+      transition: background var(--transition), transform var(--transition);
+      white-space: nowrap;
+    }
+    .nav-cta:hover {
+      background: var(--accent-hover);
+      transform: scale(1.03);
+    }
+    .nav-hamburger {
+      display: none;
+      color: var(--text);
+      padding: 4px;
+    }
+
+    /* Mobile overlay */
+    .mobile-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(13, 13, 13, 0.97);
+      backdrop-filter: blur(24px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s var(--ease);
+    }
+    .mobile-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .mobile-overlay a {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      letter-spacing: 0.05em;
+      color: var(--text);
+      transition: color var(--transition);
+    }
+    .mobile-overlay a:hover { color: var(--accent); }
+    .mobile-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      color: var(--text);
+      width: 32px;
+      height: 32px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: block; }
+      .nav { padding: 10px 16px; }
+    }
+
+    /* ============================================================
+       HERO
+       ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.25) saturate(0.6);
+    }
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(13,13,13,0.3) 0%, rgba(13,13,13,0.85) 100%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 160px 0 120px;
+    }
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(3.5rem, 10vw, 7.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      max-width: 900px;
+    }
+    .hero h1 .accent-word {
+      color: var(--accent);
+    }
+    .hero-sub {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin-top: 24px;
+      line-height: 1.7;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      margin-top: 48px;
+      flex-wrap: wrap;
+    }
+
+    /* Stagger entrance */
+    .hero h1, .hero-sub, .hero-actions {
+      opacity: 0;
+      transform: translateY(40px);
+      animation: heroIn 0.9s var(--ease) forwards;
+    }
+    .hero-sub { animation-delay: 0.15s; }
+    .hero-actions { animation-delay: 0.3s; }
+    @keyframes heroIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ============================================================
+       BUTTONS
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      border-radius: var(--radius-pill);
+      transition: all var(--transition);
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+    }
+    .btn-primary {
+      padding: 16px 36px;
+      background: var(--accent);
+      color: var(--bg);
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(200, 169, 110, 0.25);
+    }
+    .btn-outline {
+      padding: 16px 36px;
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .btn-ghost {
+      padding: 12px 24px;
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      border: 1px solid transparent;
+    }
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: var(--border);
+    }
+
+    /* ============================================================
+       MARQUEE — Social Proof
+       ============================================================ */
+    .marquee-section {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 0;
+      overflow: hidden;
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marqueeScroll 30s linear infinite;
+    }
+    .marquee-track:hover { animation-play-state: paused; }
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 40px;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .marquee-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    @keyframes marqueeScroll {
+      to { transform: translateX(-50%); }
+    }
+
+    /* ============================================================
+       SERVICES — 3 Cards
+       ============================================================ */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 64px;
+    }
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 48px 32px;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+    .service-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+    .service-icon {
+      width: 56px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius);
+      background: rgba(200, 169, 110, 0.1);
+      margin-bottom: 24px;
+    }
+    .service-icon svg {
+      width: 28px;
+      height: 28px;
+      stroke: var(--accent);
+      stroke-width: 1.5;
+      fill: none;
+    }
+    .service-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      letter-spacing: 0.03em;
+      margin-bottom: 12px;
+    }
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      line-height: 1.7;
+    }
+    .service-card .btn-ghost {
+      margin-top: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       PROCESS — 4 Steps
+       ============================================================ */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      margin-top: 64px;
+    }
+    .process-step {
+      text-align: center;
+    }
+    .process-num {
+      font-family: var(--font-heading);
+      font-size: 3.5rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .process-step h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      letter-spacing: 0.03em;
+      margin-bottom: 8px;
+    }
+    .process-step p {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      line-height: 1.7;
+    }
+    @media (max-width: 768px) {
+      .process-grid { grid-template-columns: repeat(2, 1fr); gap: 40px 24px; }
+    }
+    @media (max-width: 480px) {
+      .process-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       GALLERY — Masonry
+       ============================================================ */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 280px;
+      gap: 16px;
+      margin-top: 64px;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s var(--ease), filter 0.6s var(--ease);
+    }
+    .gallery-item:hover img {
+      transform: scale(1.05);
+      filter: brightness(0.6);
+    }
+    .gallery-label {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text);
+      background: rgba(13, 13, 13, 0.7);
+      backdrop-filter: blur(8px);
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+    }
+    .gallery-item:hover .gallery-label {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .gallery-item.span-2 { grid-column: span 2; }
+    .gallery-item.span-tall { grid-row: span 2; }
+
+    @media (max-width: 768px) {
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 220px;
+      }
+      .gallery-item.span-2 { grid-column: span 1; }
+      .gallery-item.span-tall { grid-row: span 1; }
+    }
+    @media (max-width: 480px) {
+      .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 260px; }
+    }
+
+    /* ============================================================
+       MANIFESTO / ABOUT
+       ============================================================ */
+    .manifesto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .manifesto-text h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      line-height: 0.95;
+      margin-bottom: 24px;
+    }
+    .manifesto-text p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .manifesto-points {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .manifesto-point {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .manifesto-point-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius);
+      background: rgba(200, 169, 110, 0.1);
+    }
+    .manifesto-point-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--accent);
+      stroke-width: 1.5;
+      fill: none;
+    }
+    .manifesto-point h4 {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      letter-spacing: 0.03em;
+      margin-bottom: 4px;
+    }
+    .manifesto-point p {
+      font-size: 0.875rem;
+      margin-bottom: 0;
+    }
+    .manifesto-image {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+    }
+    .manifesto-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .manifesto-badge {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      background: rgba(13, 13, 13, 0.8);
+      backdrop-filter: blur(12px);
+      padding: 12px 20px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+    }
+    .manifesto-badge .label { margin-bottom: 4px; }
+    .manifesto-badge span {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--text);
+    }
+    @media (max-width: 768px) {
+      .manifesto-grid { grid-template-columns: 1fr; gap: 48px; }
+      .manifesto-image { order: -1; }
+    }
+
+    /* ============================================================
+       TESTIMONIAL
+       ============================================================ */
+    .testimonial-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 64px;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .testimonial-stars {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      margin-bottom: 24px;
+    }
+    .testimonial-stars svg {
+      width: 20px;
+      height: 20px;
+      fill: var(--accent);
+    }
+    .testimonial-card blockquote {
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+    .testimonial-author {
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+    @media (max-width: 480px) {
+      .testimonial-card { padding: 40px 24px; }
+    }
+
+    /* ============================================================
+       CTA — Radial Glow
+       ============================================================ */
+    .cta-section {
+      position: relative;
+      text-align: center;
+      overflow: hidden;
+    }
+    .cta-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 600px;
+      height: 600px;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(200,169,110,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-section h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      line-height: 0.95;
+      position: relative;
+      z-index: 2;
+    }
+    .cta-section p {
+      color: var(--text-muted);
+      font-size: 1.125rem;
+      margin-top: 20px;
+      position: relative;
+      z-index: 2;
+    }
+    .cta-section .cta-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 48px;
+      position: relative;
+      z-index: 2;
+      flex-wrap: wrap;
+    }
+
+    /* ============================================================
+       CONTACT FORM
+       ============================================================ */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .contact-info h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      line-height: 0.95;
+      margin-bottom: 24px;
+    }
+    .contact-info > p {
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 40px;
+    }
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .contact-detail:first-of-type { border-top: 1px solid var(--border); }
+    .contact-detail-icon {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(200,169,110,0.1);
+      border-radius: var(--radius);
+      flex-shrink: 0;
+    }
+    .contact-detail-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--accent);
+      stroke-width: 1.5;
+      fill: none;
+    }
+    .contact-detail-text .label { margin-bottom: 2px; }
+    .contact-detail-text a,
+    .contact-detail-text span {
+      font-size: 1rem;
+      color: var(--text);
+    }
+    .contact-detail-text a:hover { color: var(--accent); }
+
+    .contact-form-wrapper {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+    }
+    .contact-form-wrapper h3 {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      margin-bottom: 8px;
+    }
+    .contact-form-wrapper > p {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      margin-bottom: 32px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 14px 16px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(200, 169, 110, 0.15);
+    }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-group select { cursor: pointer; }
+    .form-group select option { background: var(--bg-card); }
+
+    .form-submit {
+      width: 100%;
+      padding: 18px;
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background var(--transition), transform var(--transition);
+    }
+    .form-submit:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+    .form-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .form-submit svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+    }
+    .form-trust {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 0.8125rem;
+      color: var(--text-dim);
+    }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 48px;
+    }
+    .form-success svg {
+      width: 64px;
+      height: 64px;
+      stroke: var(--accent);
+      stroke-width: 1.5;
+      fill: none;
+      margin: 0 auto 24px;
+    }
+    .form-success h3 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+    .form-success p { color: var(--text-muted); }
+    .form-error {
+      display: none;
+      background: rgba(220, 38, 38, 0.1);
+      border: 1px solid rgba(220, 38, 38, 0.3);
+      color: #FCA5A5;
+      padding: 12px 16px;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+      .contact-form-wrapper { padding: 32px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       FOOTER
+       ============================================================ */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 64px 0 32px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+    }
+    .footer-brand h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+    .footer-brand p {
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      line-height: 1.7;
+      max-width: 360px;
+    }
+    .footer-col h4 {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+    .footer-col a {
+      display: block;
+      color: var(--text-muted);
+      font-size: 0.9375rem;
+      padding: 6px 0;
+      transition: color var(--transition);
+    }
+    .footer-col a:hover { color: var(--text); }
+    .footer-bottom {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8125rem;
+      color: var(--text-dim);
+    }
+    .footer-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+    .footer-status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22C55E;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+    }
+
+    /* ============================================================
+       MOBILE STICKY CTA
+       ============================================================ */
+    .mobile-bottom-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 998;
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 12px 16px;
+    }
+    .mobile-bottom-cta .btn-primary {
+      width: 100%;
+      justify-content: center;
+      padding: 18px;
+      font-size: 1rem;
+    }
+    @media (max-width: 768px) {
+      .mobile-bottom-cta { display: block; }
+      .footer { padding-bottom: 100px; }
+    }
+
+    /* ============================================================
+       DIVIDER
+       ============================================================ */
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ============================================================
+       SPINNER
+       ============================================================ */
+    .spinner {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--bg);
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: spin 0.6s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <header class="navbar">
-    <nav class="container navbar-inner">
-      <a href="index.html" class="navbar-logo">
-        <img src="images/logo.png" alt="Ideal Fitouts" />
-      </a>
-
-      <div class="navbar-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
-        <a href="contact.html" class="btn btn-amber btn-md">Get a Quote</a>
-      </div>
-
-      <div class="navbar-mobile-actions">
-        <a href="contact.html" class="btn btn-amber btn-sm">Get a Quote</a>
-        <button id="hamburger" class="hamburger" aria-label="Toggle menu">
-          <svg class="icon-menu" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-          <svg class="icon-close" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </button>
-      </div>
-    </nav>
-
-    <div id="mobile-menu" class="mobile-menu">
-      <a href="index.html">Home</a>
-      <a href="about.html">About Us</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
+  <!-- ===================== NAVBAR ===================== -->
+  <nav class="nav" id="navbar">
+    <a href="#" class="nav-logo">IDEAL FITOUTS</a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#gallery">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
     </div>
-  </header>
+    <a href="#contact" class="nav-cta">Get a Quote</a>
+    <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </nav>
 
-  <div class="navbar-spacer"></div>
+  <!-- Mobile Overlay -->
+  <div class="mobile-overlay" id="mobile-overlay">
+    <button class="mobile-close" id="mobile-close" aria-label="Close menu">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <a href="#services" class="mobile-link">Services</a>
+    <a href="#gallery" class="mobile-link">Projects</a>
+    <a href="#about" class="mobile-link">About</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+    <a href="tel:+642102483801" class="mobile-link" style="color: var(--accent);">021 024 83801</a>
+  </div>
 
-  <!-- Hero -->
-  <section class="hero">
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="hero">
     <img
       src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=80"
       alt="Modern commercial office interior"
       class="hero-bg"
       loading="eager"
     />
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
+    <div class="hero-gradient"></div>
+    <div class="hero-content container">
+      <p class="label">Commercial Fitout Specialists &mdash; Auckland, NZ</p>
       <h1>
-        Office &middot; Retail &middot; Education
-        <span class="accent">Fitout Specialists</span>
+        WE BUILD SPACES<br/>
+        THAT <span class="accent-word">WORK</span>
       </h1>
-      <p class="subtitle">
-        Let us help you create a space that fits your vision. Over 18 years of exceptional craftsmanship in commercial fit-outs across Auckland.
+      <p class="hero-sub">
+        Office. Retail. Education. Over 18 years of exceptional craftsmanship, delivering fit-outs that maximise your space with aesthetic and practicality in mind.
       </p>
       <div class="hero-actions">
-        <a href="contact.html" class="btn btn-amber btn-lg btn-full-mobile">
-          Get a Free Quote
-          <svg class="icon" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        <a href="#contact" class="btn btn-primary">
+          Start Your Project
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
-        <a href="tel:+642102483801" class="btn btn-outline-white btn-lg btn-full-mobile">
-          <svg class="icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <a href="tel:+642102483801" class="btn btn-outline">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           021 024 83801
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Trust Bar -->
-  <section class="trust-bar">
-    <div class="container">
-      <div class="trust-bar-grid">
-        <div class="trust-item">
-          <div class="trust-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
-          </div>
-          <div>
-            <strong>18+ Years Experience</strong>
-            <span>Proven track record</span>
-          </div>
-        </div>
-        <div class="trust-item">
-          <div class="trust-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <div>
-            <strong>Pasifika-Owned</strong>
-            <span>Proudly diverse</span>
-          </div>
-        </div>
-        <div class="trust-item">
-          <div class="trust-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-          </div>
-          <div>
-            <strong>AMOTAI Certified</strong>
-            <span>Supplier diversity member</span>
-          </div>
-        </div>
-      </div>
+  <!-- ===================== MARQUEE ===================== -->
+  <section class="marquee-section">
+    <div class="marquee-track">
+      <span class="marquee-item"><span class="marquee-dot"></span> 18+ Years Experience</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Pasifika-Owned Business</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> AMOTAI Certified Member</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Office Fitouts</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Retail Fitouts</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Education Fitouts</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Auckland Based</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Interior Aluminium Partitioning</span>
+      <!-- Duplicate for seamless loop -->
+      <span class="marquee-item"><span class="marquee-dot"></span> 18+ Years Experience</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Pasifika-Owned Business</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> AMOTAI Certified Member</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Office Fitouts</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Retail Fitouts</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Education Fitouts</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Auckland Based</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Interior Aluminium Partitioning</span>
     </div>
   </section>
 
-  <!-- Services -->
-  <section class="section">
+  <!-- ===================== SERVICES ===================== -->
+  <section class="section-pad" id="services">
     <div class="container">
-      <div class="section-header">
-        <h2>What We Do</h2>
-        <p>We specialise in Interior Aluminium Partitioning for commercial spaces, delivering exceptional workmanship every time.</p>
+      <div class="text-center reveal">
+        <p class="label">What We Do</p>
+        <h2 style="font-family:var(--font-heading);font-size:clamp(2.5rem,5vw,4rem);margin-top:12px;">Specialist Commercial Fitouts</h2>
+        <p style="color:var(--text-muted);max-width:560px;margin:16px auto 0;font-size:1rem;">We specialise in Interior Aluminium Partitioning for commercial spaces, delivering exceptional workmanship every time.</p>
       </div>
 
       <div class="services-grid">
         <!-- Office -->
-        <article class="service-card">
-          <div class="service-card-img">
-            <img src="https://static.wixstatic.com/media/e3d81d_4b9f9f3edc104f62aff90c038e306049~mv2.jpg/v1/fill/w_960,h_640,al_c,q_80/e3d81d_4b9f9f3edc104f62aff90c038e306049~mv2.jpg" alt="Office fitout by Ideal Fitouts" loading="lazy" />
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
           </div>
-          <div class="service-card-body">
-            <div class="service-card-title">
-              <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg>
-              <h3>Office Fitouts</h3>
-            </div>
-            <p>Create a more engaging workspace that boosts productivity and reflects your brand. From open-plan layouts to private offices, we deliver exceptional results.</p>
-            <a href="contact.html" class="btn btn-amber btn-md">
-              Get a Quote
-              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-          </div>
-        </article>
+          <h3>Office Fitouts</h3>
+          <p>Create a more engaging workspace that boosts productivity and reflects your brand. From open-plan layouts to private offices.</p>
+          <a href="#contact" class="btn btn-ghost">
+            Get a Quote
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
 
         <!-- Retail -->
-        <article class="service-card">
-          <div class="service-card-img">
-            <img src="https://static.wixstatic.com/media/e3d81d_235309435ac1477396e7fe3db8f65233~mv2.jpg/v1/fill/w_960,h_640,al_c,q_80/e3d81d_235309435ac1477396e7fe3db8f65233~mv2.jpg" alt="Retail fitout by Ideal Fitouts" loading="lazy" />
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/></svg>
           </div>
-          <div class="service-card-body">
-            <div class="service-card-title">
-              <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"/></svg>
-              <h3>Retail Fitouts</h3>
-            </div>
-            <p>Design a captivating retail space that draws customers in and creates memorable shopping experiences. We specialise in high-impact retail environments.</p>
-            <a href="contact.html" class="btn btn-amber btn-md">
-              Get a Quote
-              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-          </div>
-        </article>
+          <h3>Retail Fitouts</h3>
+          <p>Design a captivating retail space that draws customers in and creates memorable shopping experiences.</p>
+          <a href="#contact" class="btn btn-ghost">
+            Get a Quote
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
 
         <!-- Education -->
-        <article class="service-card">
-          <div class="service-card-img">
-            <img src="https://static.wixstatic.com/media/e3d81d_835d061e50944b97b0710657ace3a393~mv2.jpg/v1/fill/w_960,h_640,al_c,q_80/e3d81d_835d061e50944b97b0710657ace3a393~mv2.jpg" alt="Education fitout by Ideal Fitouts" loading="lazy" />
+        <div class="service-card reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
           </div>
-          <div class="service-card-body">
-            <div class="service-card-title">
-              <svg class="icon-lg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
-              <h3>Education Fitouts</h3>
-            </div>
-            <p>Build inviting learning spaces at your education centre. We create environments that inspire students and support modern teaching methods.</p>
-            <a href="contact.html" class="btn btn-amber btn-md">
-              Get a Quote
-              <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-          </div>
-        </article>
+          <h3>Education Fitouts</h3>
+          <p>Build inviting learning spaces that inspire students and support modern teaching methods at your education centre.</p>
+          <a href="#contact" class="btn btn-ghost">
+            Get a Quote
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Our Work Preview -->
-  <section class="section section-alt">
+  <div class="divider"></div>
+
+  <!-- ===================== PROCESS ===================== -->
+  <section class="section-pad">
     <div class="container">
-      <div class="work-header">
-        <div>
-          <h2>Our Work</h2>
-          <p>A selection of our recent commercial fitout projects.</p>
+      <div class="text-center reveal">
+        <p class="label">How We Work</p>
+        <h2 style="font-family:var(--font-heading);font-size:clamp(2.5rem,5vw,4rem);margin-top:12px;">Our Process</h2>
+        <p style="color:var(--text-muted);max-width:520px;margin:16px auto 0;">Simple, transparent, and built around your needs.</p>
+      </div>
+
+      <div class="process-grid">
+        <div class="process-step reveal">
+          <div class="process-num">01</div>
+          <h3>Consult</h3>
+          <p>We listen to your vision, assess the space, and outline a plan that works for your budget and timeline.</p>
         </div>
-        <a href="projects.html" class="view-all">
-          View All Projects
-          <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+        <div class="process-step reveal">
+          <div class="process-num">02</div>
+          <h3>Design</h3>
+          <p>We create a detailed plan that maximises your space with both aesthetic and practicality in mind.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="process-num">03</div>
+          <h3>Build</h3>
+          <p>Our experienced team delivers exceptional craftsmanship with minimal disruption to your operations.</p>
+        </div>
+        <div class="process-step reveal">
+          <div class="process-num">04</div>
+          <h3>Maintain</h3>
+          <p>We stand behind our work with ongoing support and maintenance to keep your space looking its best.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ===================== GALLERY ===================== -->
+  <section class="section-pad" id="gallery">
+    <div class="container">
+      <div class="text-center reveal">
+        <p class="label">Our Work</p>
+        <h2 style="font-family:var(--font-heading);font-size:clamp(2.5rem,5vw,4rem);margin-top:12px;">Project Gallery</h2>
+        <p style="color:var(--text-muted);max-width:520px;margin:16px auto 0;">A selection of our commercial fitout projects across Auckland.</p>
       </div>
 
       <div class="gallery-grid">
-        <a href="projects.html" class="gallery-item">
-          <img src="https://static.wixstatic.com/media/e3d81d_a6ca806df1f2491fb72add48bf87ea42~mv2.jpg/v1/fill/w_960,h_640,al_c,q_80/e3d81d_a6ca806df1f2491fb72add48bf87ea42~mv2.jpg" alt="Office partition installation by Ideal Fitouts" loading="lazy" />
-          <div class="gallery-overlay"></div>
-        </a>
-        <a href="projects.html" class="gallery-item">
-          <img src="https://static.wixstatic.com/media/e3d81d_fbbb8e26d35941e9a8e77df7a416414a~mv2.jpg/v1/fill/w_960,h_640,al_c,q_80/e3d81d_fbbb8e26d35941e9a8e77df7a416414a~mv2.jpg" alt="Interior aluminium partitioning project" loading="lazy" />
-          <div class="gallery-overlay"></div>
-        </a>
-        <a href="projects.html" class="gallery-item">
-          <img src="https://static.wixstatic.com/media/e3d81d_90bae1f312bc46e7979f9fe394ccd5dc~mv2.jpg/v1/fill/w_960,h_640,al_c,q_80/e3d81d_90bae1f312bc46e7979f9fe394ccd5dc~mv2.jpg" alt="Modern workspace design and fitout" loading="lazy" />
-          <div class="gallery-overlay"></div>
-        </a>
-      </div>
-
-      <div style="margin-top:2rem;text-align:center;">
-        <a href="projects.html" class="btn btn-amber btn-lg" style="display:inline-flex;">
-          View All Projects
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
+        <div class="gallery-item span-2 span-tall">
+          <img src="https://static.wixstatic.com/media/e3d81d_4b9f9f3edc104f62aff90c038e306049~mv2.jpg/v1/fill/w_1920,h_1280,al_c/e3d81d_4b9f9f3edc104f62aff90c038e306049~mv2.jpg" alt="Commercial office fitout with modern glass partitions" loading="lazy" />
+          <span class="gallery-label">Office Fitout</span>
+        </div>
+        <div class="gallery-item">
+          <img src="https://static.wixstatic.com/media/e3d81d_a6ca806df1f2491fb72add48bf87ea42~mv2.jpg/v1/fill/w_1920,h_1280,al_c/e3d81d_a6ca806df1f2491fb72add48bf87ea42~mv2.jpg" alt="Office partition installation with aluminium framing" loading="lazy" />
+          <span class="gallery-label">Partitioning</span>
+        </div>
+        <div class="gallery-item">
+          <img src="https://static.wixstatic.com/media/e3d81d_235309435ac1477396e7fe3db8f65233~mv2.jpg/v1/fill/w_1920,h_1280,al_c/e3d81d_235309435ac1477396e7fe3db8f65233~mv2.jpg" alt="Completed retail fitout showcasing interior design" loading="lazy" />
+          <span class="gallery-label">Retail Space</span>
+        </div>
+        <div class="gallery-item">
+          <img src="https://static.wixstatic.com/media/e3d81d_fbbb8e26d35941e9a8e77df7a416414a~mv2.jpg/v1/fill/w_1920,h_1280,al_c/e3d81d_fbbb8e26d35941e9a8e77df7a416414a~mv2.jpg" alt="Interior aluminium partitioning for commercial spaces" loading="lazy" />
+          <span class="gallery-label">Aluminium Systems</span>
+        </div>
+        <div class="gallery-item span-2">
+          <img src="https://static.wixstatic.com/media/e3d81d_835d061e50944b97b0710657ace3a393~mv2.jpg/v1/fill/w_1920,h_1280,al_c/e3d81d_835d061e50944b97b0710657ace3a393~mv2.jpg" alt="Education centre fitout with modern learning spaces" loading="lazy" />
+          <span class="gallery-label">Education Centre</span>
+        </div>
+        <div class="gallery-item">
+          <img src="https://static.wixstatic.com/media/e3d81d_90bae1f312bc46e7979f9fe394ccd5dc~mv2.jpg/v1/fill/w_1920,h_1280,al_c/e3d81d_90bae1f312bc46e7979f9fe394ccd5dc~mv2.jpg" alt="Modern workspace design by Ideal Fitouts" loading="lazy" />
+          <span class="gallery-label">Modern Workspace</span>
+        </div>
+        <div class="gallery-item">
+          <img src="https://static.wixstatic.com/media/e3d81d_74bef178154d4c6db7fb9794de4325e6~mv2.jpg/v1/fill/w_1920,h_1280,al_c/e3d81d_74bef178154d4c6db7fb9794de4325e6~mv2.jpg" alt="Glass partitioning system for open-plan offices" loading="lazy" />
+          <span class="gallery-label">Glass Partitions</span>
+        </div>
+        <div class="gallery-item span-2">
+          <img src="https://static.wixstatic.com/media/e3d81d_d2017d7553b64e4c9ff48973a0f11116~mv2.jpg/v1/fill/w_1920,h_1280,al_c/e3d81d_d2017d7553b64e4c9ff48973a0f11116~mv2.jpg" alt="Office construction and fitout project in Auckland" loading="lazy" />
+          <span class="gallery-label">Auckland Project</span>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- CTA Banner -->
-  <section class="cta-banner">
+  <div class="divider"></div>
+
+  <!-- ===================== MANIFESTO / ABOUT ===================== -->
+  <section class="section-pad" id="about">
     <div class="container">
-      <h2>Ready to Transform Your Space?</h2>
-      <p>Whether it&rsquo;s a more engaging office, an inviting learning space, or a captivating retail environment &mdash; we&rsquo;re here to help.</p>
-      <div class="cta-banner-actions">
-        <a href="contact.html" class="btn btn-amber btn-lg btn-full-mobile">
-          Start Your Project
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
-        <a href="tel:+642102483801" class="btn btn-outline-slate btn-lg btn-full-mobile">
-          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          Call Us Now
-        </a>
+      <div class="manifesto-grid">
+        <div class="manifesto-text reveal">
+          <p class="label">About Us</p>
+          <h2>BUILT ON CRAFT.<br/> DRIVEN BY <span style="color:var(--accent);">TRUST.</span></h2>
+          <p>Founded by Samuel in 2016, Ideal Fitouts brings over 18 years of qualified building experience to every commercial project. Samuel monitors and oversees all projects directly to ensure the quality and workmanship is at a high standard.</p>
+          <p>We pride ourselves in having a friendly, respectful and informative approach to our clients. It is important to us to establish a trusting relationship through good communication and simple processes.</p>
+
+          <div class="manifesto-points">
+            <div class="manifesto-point">
+              <div class="manifesto-point-icon">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+              </div>
+              <div>
+                <h4>18+ Years Experience</h4>
+                <p>Proven track record of exceptional craftsmanship in commercial spaces.</p>
+              </div>
+            </div>
+            <div class="manifesto-point">
+              <div class="manifesto-point-icon">
+                <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              </div>
+              <div>
+                <h4>Pasifika-Owned</h4>
+                <p>Proudly diverse, bringing cultural values of respect and community to every project.</p>
+              </div>
+            </div>
+            <div class="manifesto-point">
+              <div class="manifesto-point-icon">
+                <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+              </div>
+              <div>
+                <h4>AMOTAI Certified</h4>
+                <p>Verified member of the AMOTAI supplier diversity network.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="manifesto-image reveal">
+          <img src="https://static.wixstatic.com/media/e3d81d_90bae1f312bc46e7979f9fe394ccd5dc~mv2.jpg/v1/fill/w_960,h_1200,al_c,q_80/e3d81d_90bae1f312bc46e7979f9fe394ccd5dc~mv2.jpg" alt="Ideal Fitouts workspace project" loading="lazy" />
+          <div class="manifesto-badge">
+            <p class="label">Established</p>
+            <span>2016</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
+  <div class="divider"></div>
+
+  <!-- ===================== TESTIMONIAL ===================== -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="text-center reveal">
+        <p class="label">Client Feedback</p>
+      </div>
+      <div class="testimonial-card reveal" style="margin-top:48px;">
+        <div class="testimonial-stars">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <blockquote>&ldquo;Execution of the Project is not just about completing the Project but the whole experience. From the first point of contact till the end of the project, we strive to ensure the client feels comfortable, informed and most importantly trust us to deliver on all that is required.&rdquo;</blockquote>
+        <p class="testimonial-author">&mdash; Samuel, Director of Ideal Fitouts</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ===================== CTA ===================== -->
+  <section class="section-pad cta-section">
+    <div class="cta-glow"></div>
+    <div class="container">
+      <div class="reveal">
+        <p class="label">Ready?</p>
+        <h2>LET&rsquo;S BUILD<br/>SOMETHING <span style="color:var(--accent);">GREAT</span></h2>
+        <p>Get in touch today. We&rsquo;ll work with you from design through to completion.</p>
+        <div class="cta-actions">
+          <a href="#contact" class="btn btn-primary">
+            Start Your Project
+            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="tel:+642102483801" class="btn btn-outline">
+            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Call Us Now
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section class="section-pad" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Left: Info -->
+        <div class="contact-info reveal">
+          <p class="label">Get In Touch</p>
+          <h2>LET&rsquo;S TALK ABOUT YOUR PROJECT</h2>
+          <p>Simple processes. Open communication. Exceptional workmanship. Reach out and we&rsquo;ll get back to you within 24 hours.</p>
+
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="contact-detail-text">
+              <p class="label">Phone</p>
+              <a href="tel:+642102483801">021 024 83801</a>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </div>
+            <div class="contact-detail-text">
+              <p class="label">Email</p>
+              <a href="mailto:info@idealfitouts.co.nz">info@idealfitouts.co.nz</a>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="contact-detail-text">
+              <p class="label">Hours</p>
+              <span>Monday &ndash; Friday, 8am &ndash; 5pm</span>
+            </div>
+          </div>
+          <div class="contact-detail">
+            <div class="contact-detail-icon">
+              <svg viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="contact-detail-text">
+              <p class="label">Location</p>
+              <span>Auckland, New Zealand</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="contact-form-wrapper reveal">
+          <h3>Request a Free Quote</h3>
+          <p>Fill in the form below and we&rsquo;ll be in touch.</p>
+
+          <div class="form-error" id="form-error"></div>
+
+          <form id="contact-form" action="https://formspree.io/f/xyzgbkwl" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" name="first-name" placeholder="John" autocomplete="given-name" />
+              </div>
+              <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" name="last-name" placeholder="Smith" autocomplete="family-name" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email <span style="color:var(--accent);">*</span></label>
+              <input type="email" id="email" name="email" placeholder="john@example.com" required autocomplete="email" />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="021 234 5678" autocomplete="tel" />
+            </div>
+            <div class="form-group">
+              <label for="project-type">Project Type</label>
+              <select id="project-type" name="project-type">
+                <option value="">Select a project type</option>
+                <option value="Office Fitout">Office Fitout</option>
+                <option value="Retail Fitout">Retail Fitout</option>
+                <option value="Education Fitout">Education Fitout</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell us about your project..."></textarea>
+            </div>
+            <button type="submit" class="form-submit" id="form-submit-btn">
+              <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              Submit Enquiry
+            </button>
+            <p class="form-trust">We respond within 24 hours. Your information is never shared.</p>
+          </form>
+
+          <div class="form-success" id="form-success">
+            <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <h3>Thank You!</h3>
+            <p>We&rsquo;ve received your enquiry and will get back to you within 72 hours.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
-          <h3>Ideal Fitouts</h3>
+          <h3>IDEAL FITOUTS</h3>
           <p>Commercial Fitout Specialists in Auckland, New Zealand. Maximising the use of available spaces with aesthetic and practicality in mind.</p>
         </div>
-        <div class="footer-nav">
+        <div class="footer-col">
           <h4>Navigation</h4>
-          <a href="index.html">Home</a>
-          <a href="about.html">About Us</a>
-          <a href="projects.html">Projects</a>
-          <a href="contact.html">Contact Us</a>
+          <a href="#hero">Home</a>
+          <a href="#services">Services</a>
+          <a href="#gallery">Projects</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
         </div>
-        <div class="footer-contact">
-          <h4>Get In Touch</h4>
-          <a href="tel:+642102483801" class="footer-contact-link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            021 024 83801
-          </a>
-          <a href="mailto:info@idealfitouts.co.nz" class="footer-contact-link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-            info@idealfitouts.co.nz
-          </a>
-          <a href="contact.html" class="btn btn-amber btn-md" style="margin-top:1rem;">Request a Quote</a>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <a href="tel:+642102483801">021 024 83801</a>
+          <a href="mailto:info@idealfitouts.co.nz">info@idealfitouts.co.nz</a>
+          <a href="#contact" style="color:var(--accent);margin-top:8px;display:inline-block;">Request a Quote &rarr;</a>
         </div>
       </div>
       <div class="footer-bottom">
-        &copy; 2025 Ideal Fitouts Limited. All rights reserved.
+        <span>&copy; 2025 Ideal Fitouts Limited. All rights reserved.</span>
+        <div class="footer-status">
+          <span class="footer-status-dot"></span>
+          Available for new projects
+        </div>
       </div>
     </div>
-    <div class="footer-mobile-spacer"></div>
   </footer>
 
-  <!-- Mobile Sticky Bottom CTA -->
-  <div class="mobile-sticky-cta">
-    <a href="tel:+642102483801" class="cta-call">
-      <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      Call Now
-    </a>
-    <a href="contact.html" class="cta-quote">Get a Quote</a>
+  <!-- Mobile Sticky CTA -->
+  <div class="mobile-bottom-cta">
+    <a href="#contact" class="btn btn-primary">Get a Free Quote</a>
   </div>
 
-  <script src="js/main.js"></script>
+  <!-- ===================== JAVASCRIPT ===================== -->
+  <script>
+    (function () {
+      /* --- Navbar scroll effect --- */
+      var nav = document.getElementById('navbar');
+      window.addEventListener('scroll', function () {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+      });
+
+      /* --- Mobile menu --- */
+      var hamburger = document.getElementById('hamburger');
+      var overlay = document.getElementById('mobile-overlay');
+      var closeBtn = document.getElementById('mobile-close');
+
+      function openMenu() { overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+      function closeMenu() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+
+      hamburger.addEventListener('click', openMenu);
+      closeBtn.addEventListener('click', closeMenu);
+      overlay.querySelectorAll('.mobile-link').forEach(function (link) {
+        link.addEventListener('click', closeMenu);
+      });
+
+      /* --- Smooth scroll for anchor links --- */
+      document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        a.addEventListener('click', function (e) {
+          var target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      /* --- IntersectionObserver scroll reveals --- */
+      var reveals = document.querySelectorAll('.reveal');
+      if ('IntersectionObserver' in window) {
+        var observer = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              /* Stagger siblings */
+              var parent = entry.target.parentElement;
+              var siblings = parent.querySelectorAll('.reveal');
+              var idx = Array.prototype.indexOf.call(siblings, entry.target);
+              entry.target.style.transitionDelay = (idx * 0.1) + 's';
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+        reveals.forEach(function (el) { observer.observe(el); });
+      } else {
+        reveals.forEach(function (el) { el.classList.add('visible'); });
+      }
+
+      /* --- Contact Form Handler --- */
+      var form = document.getElementById('contact-form');
+      var formWrapper = form ? form.parentElement : null;
+      var successEl = document.getElementById('form-success');
+      var errorEl = document.getElementById('form-error');
+      var submitBtn = document.getElementById('form-submit-btn');
+
+      if (form) {
+        form.addEventListener('submit', async function (e) {
+          e.preventDefault();
+
+          /* Validate email */
+          var emailField = form.querySelector('[name="email"]');
+          if (!emailField || !emailField.value || !/^.+@.+\.[a-zA-Z]{2,63}$/.test(emailField.value)) {
+            showError('Please enter a valid email address.');
+            return;
+          }
+
+          /* Loading state */
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<span class="spinner"></span> Sending...';
+          hideError();
+
+          try {
+            var formData = new FormData(form);
+            var response = await fetch(form.action, {
+              method: 'POST',
+              body: formData,
+              headers: { 'Accept': 'application/json' }
+            });
+
+            if (!response.ok) {
+              var result = await response.json();
+              throw new Error((result.errors && result.errors.map(function(e){return e.message;}).join(', ')) || 'Submission failed');
+            }
+
+            /* Show success */
+            form.style.display = 'none';
+            if (formWrapper.querySelector('h3')) formWrapper.querySelector('h3').style.display = 'none';
+            if (formWrapper.querySelector(':scope > p')) formWrapper.querySelector(':scope > p').style.display = 'none';
+            successEl.style.display = 'block';
+          } catch (err) {
+            console.error('Form error:', err);
+            showError('Something went wrong. Please call us directly at 021 024 83801.');
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg> Submit Enquiry';
+          }
+        });
+      }
+
+      function showError(msg) {
+        errorEl.textContent = msg;
+        errorEl.style.display = 'block';
+      }
+      function hideError() {
+        errorEl.style.display = 'none';
+      }
+    })();
+  </script>
+
 </body>
 </html>
