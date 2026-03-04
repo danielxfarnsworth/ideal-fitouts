@@ -133,11 +133,13 @@
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
     }
     .nav-logo {
-      font-family: var(--font-heading);
-      font-size: 1.3rem;
-      letter-spacing: 0.05em;
-      color: var(--accent);
+      display: flex;
+      align-items: center;
       white-space: nowrap;
+    }
+    .nav-logo img {
+      height: 36px;
+      width: auto;
     }
     .nav-links {
       display: flex;
@@ -1017,14 +1019,14 @@
 
   <!-- ===================== NAVBAR ===================== -->
   <nav class="nav" id="navbar">
-    <a href="#" class="nav-logo">IDEAL FITOUTS</a>
+    <a href="#" class="nav-logo"><img src="images/logo.avif" alt="Ideal Fitouts" style="height:36px;width:auto;" /></a>
     <div class="nav-links">
       <a href="#services">Services</a>
       <a href="#gallery">Projects</a>
       <a href="#about">About</a>
       <a href="#contact">Contact</a>
     </div>
-    <a href="#contact" class="nav-cta">Get a Quote</a>
+    <a href="#contact" class="nav-cta">Get a Free Quote</a>
     <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
     </button>
@@ -1061,13 +1063,13 @@
         Office. Retail. Education. Over 18 years of exceptional craftsmanship, delivering fit-outs that maximise your space with aesthetic and practicality in mind.
       </p>
       <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary">
-          Start Your Project
+        <a href="#contact" class="btn btn-primary" style="font-size:1.0625rem;padding:20px 44px;">
+          Get a Free Quote
           <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
-        <a href="tel:+642102483801" class="btn btn-outline">
-          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          021 024 83801
+        <a href="tel:+642102483801" class="btn btn-primary" style="font-size:1.0625rem;padding:20px 44px;background:transparent;border:2px solid var(--accent);color:var(--accent);">
+          <svg viewBox="0 0 24 24" style="width:22px;height:22px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call 021 024 83801
         </a>
       </div>
     </div>
@@ -1083,7 +1085,7 @@
       <span class="marquee-item"><span class="marquee-dot"></span> Retail Fitouts</span>
       <span class="marquee-item"><span class="marquee-dot"></span> Education Fitouts</span>
       <span class="marquee-item"><span class="marquee-dot"></span> Auckland Based</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> Interior Aluminium Partitioning</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Aluminium Partitioning</span>
       <!-- Duplicate for seamless loop -->
       <span class="marquee-item"><span class="marquee-dot"></span> 18+ Years Experience</span>
       <span class="marquee-item"><span class="marquee-dot"></span> Pasifika-Owned Business</span>
@@ -1092,7 +1094,7 @@
       <span class="marquee-item"><span class="marquee-dot"></span> Retail Fitouts</span>
       <span class="marquee-item"><span class="marquee-dot"></span> Education Fitouts</span>
       <span class="marquee-item"><span class="marquee-dot"></span> Auckland Based</span>
-      <span class="marquee-item"><span class="marquee-dot"></span> Interior Aluminium Partitioning</span>
+      <span class="marquee-item"><span class="marquee-dot"></span> Aluminium Partitioning</span>
     </div>
   </section>
 
@@ -1114,7 +1116,7 @@
           <h3>Office Fitouts</h3>
           <p>Create a more engaging workspace that boosts productivity and reflects your brand. From open-plan layouts to private offices.</p>
           <a href="#contact" class="btn btn-ghost">
-            Get a Quote
+            Get a Free Quote
             <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
         </div>
@@ -1127,7 +1129,7 @@
           <h3>Retail Fitouts</h3>
           <p>Design a captivating retail space that draws customers in and creates memorable shopping experiences.</p>
           <a href="#contact" class="btn btn-ghost">
-            Get a Quote
+            Get a Free Quote
             <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
         </div>
@@ -1140,7 +1142,7 @@
           <h3>Education Fitouts</h3>
           <p>Build inviting learning spaces that inspire students and support modern teaching methods at your education centre.</p>
           <a href="#contact" class="btn btn-ghost">
-            Get a Quote
+            Get a Free Quote
             <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
         </div>
@@ -1177,8 +1179,8 @@
         </div>
         <div class="process-step reveal">
           <div class="process-num">04</div>
-          <h3>Maintain</h3>
-          <p>We stand behind our work with ongoing support and maintenance to keep your space looking its best.</p>
+          <h3>Deliver</h3>
+          <p>We hand over a finished space that&rsquo;s ready to move into &mdash; on time, on budget, and built to last.</p>
         </div>
       </div>
     </div>
@@ -1195,37 +1197,42 @@
         <p style="color:var(--text-muted);max-width:520px;margin:16px auto 0;">A selection of our commercial fitout projects across Auckland.</p>
       </div>
 
+      <!--
+        PROJECT IMAGES: Ask the client to send the actual image files.
+        The old Wix URLs (static.wixstatic.com) can break anytime.
+        Place files as images/gallery-1.jpg through gallery-8.jpg.
+      -->
       <div class="gallery-grid">
         <div class="gallery-item span-2 span-tall">
-          <img src="https://static.wixstatic.com/media/e3d81d_4b9f9f3edc104f62aff90c038e306049~mv2.jpg/v1/fill/w_1920,h_1280,al_c/e3d81d_4b9f9f3edc104f62aff90c038e306049~mv2.jpg" alt="Commercial office fitout with modern glass partitions" loading="lazy" />
+          <img src="images/gallery-1.jpg" alt="Commercial office fitout with modern glass partitions" loading="lazy" />
           <span class="gallery-label">Office Fitout</span>
         </div>
         <div class="gallery-item">
-          <img src="https://static.wixstatic.com/media/e3d81d_a6ca806df1f2491fb72add48bf87ea42~mv2.jpg/v1/fill/w_1920,h_1280,al_c/e3d81d_a6ca806df1f2491fb72add48bf87ea42~mv2.jpg" alt="Office partition installation with aluminium framing" loading="lazy" />
+          <img src="images/gallery-2.jpg" alt="Office partition installation with aluminium framing" loading="lazy" />
           <span class="gallery-label">Partitioning</span>
         </div>
         <div class="gallery-item">
-          <img src="https://static.wixstatic.com/media/e3d81d_235309435ac1477396e7fe3db8f65233~mv2.jpg/v1/fill/w_1920,h_1280,al_c/e3d81d_235309435ac1477396e7fe3db8f65233~mv2.jpg" alt="Completed retail fitout showcasing interior design" loading="lazy" />
+          <img src="images/gallery-3.jpg" alt="Completed retail fitout showcasing interior design" loading="lazy" />
           <span class="gallery-label">Retail Space</span>
         </div>
         <div class="gallery-item">
-          <img src="https://static.wixstatic.com/media/e3d81d_fbbb8e26d35941e9a8e77df7a416414a~mv2.jpg/v1/fill/w_1920,h_1280,al_c/e3d81d_fbbb8e26d35941e9a8e77df7a416414a~mv2.jpg" alt="Interior aluminium partitioning for commercial spaces" loading="lazy" />
+          <img src="images/gallery-4.jpg" alt="Interior aluminium partitioning for commercial spaces" loading="lazy" />
           <span class="gallery-label">Aluminium Systems</span>
         </div>
         <div class="gallery-item span-2">
-          <img src="https://static.wixstatic.com/media/e3d81d_835d061e50944b97b0710657ace3a393~mv2.jpg/v1/fill/w_1920,h_1280,al_c/e3d81d_835d061e50944b97b0710657ace3a393~mv2.jpg" alt="Education centre fitout with modern learning spaces" loading="lazy" />
+          <img src="images/gallery-5.jpg" alt="Education centre fitout with modern learning spaces" loading="lazy" />
           <span class="gallery-label">Education Centre</span>
         </div>
         <div class="gallery-item">
-          <img src="https://static.wixstatic.com/media/e3d81d_90bae1f312bc46e7979f9fe394ccd5dc~mv2.jpg/v1/fill/w_1920,h_1280,al_c/e3d81d_90bae1f312bc46e7979f9fe394ccd5dc~mv2.jpg" alt="Modern workspace design by Ideal Fitouts" loading="lazy" />
+          <img src="images/gallery-6.jpg" alt="Modern workspace design by Ideal Fitouts" loading="lazy" />
           <span class="gallery-label">Modern Workspace</span>
         </div>
         <div class="gallery-item">
-          <img src="https://static.wixstatic.com/media/e3d81d_74bef178154d4c6db7fb9794de4325e6~mv2.jpg/v1/fill/w_1920,h_1280,al_c/e3d81d_74bef178154d4c6db7fb9794de4325e6~mv2.jpg" alt="Glass partitioning system for open-plan offices" loading="lazy" />
+          <img src="images/gallery-7.jpg" alt="Glass partitioning system for open-plan offices" loading="lazy" />
           <span class="gallery-label">Glass Partitions</span>
         </div>
         <div class="gallery-item span-2">
-          <img src="https://static.wixstatic.com/media/e3d81d_d2017d7553b64e4c9ff48973a0f11116~mv2.jpg/v1/fill/w_1920,h_1280,al_c/e3d81d_d2017d7553b64e4c9ff48973a0f11116~mv2.jpg" alt="Office construction and fitout project in Auckland" loading="lazy" />
+          <img src="images/gallery-8.jpg" alt="Office construction and fitout project in Auckland" loading="lazy" />
           <span class="gallery-label">Auckland Project</span>
         </div>
       </div>
@@ -1241,8 +1248,8 @@
         <div class="manifesto-text reveal">
           <p class="label">About Us</p>
           <h2>BUILT ON CRAFT.<br/> DRIVEN BY <span style="color:var(--accent);">TRUST.</span></h2>
-          <p>Founded by Samuel in 2016, Ideal Fitouts brings over 18 years of qualified building experience to every commercial project. Samuel monitors and oversees all projects directly to ensure the quality and workmanship is at a high standard.</p>
-          <p>We pride ourselves in having a friendly, respectful and informative approach to our clients. It is important to us to establish a trusting relationship through good communication and simple processes.</p>
+          <p>18 years in the industry. Every project personally overseen by Samuel. Ideal Fitouts delivers commercial fit-outs across Auckland with hands-on leadership and zero shortcuts.</p>
+          <p>Good communication. Simple processes. A friendly, respectful approach from first call to final walkthrough.</p>
 
           <div class="manifesto-points">
             <div class="manifesto-point">
@@ -1276,7 +1283,8 @@
         </div>
 
         <div class="manifesto-image reveal">
-          <img src="https://static.wixstatic.com/media/e3d81d_90bae1f312bc46e7979f9fe394ccd5dc~mv2.jpg/v1/fill/w_960,h_1200,al_c,q_80/e3d81d_90bae1f312bc46e7979f9fe394ccd5dc~mv2.jpg" alt="Ideal Fitouts workspace project" loading="lazy" />
+          <!-- Replace with client-provided image -->
+          <img src="images/gallery-6.jpg" alt="Ideal Fitouts workspace project" loading="lazy" />
           <div class="manifesto-badge">
             <p class="label">Established</p>
             <span>2016</span>
@@ -1288,25 +1296,7 @@
 
   <div class="divider"></div>
 
-  <!-- ===================== TESTIMONIAL ===================== -->
-  <section class="section-pad">
-    <div class="container">
-      <div class="text-center reveal">
-        <p class="label">Client Feedback</p>
-      </div>
-      <div class="testimonial-card reveal" style="margin-top:48px;">
-        <div class="testimonial-stars">
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-        <blockquote>&ldquo;Execution of the Project is not just about completing the Project but the whole experience. From the first point of contact till the end of the project, we strive to ensure the client feels comfortable, informed and most importantly trust us to deliver on all that is required.&rdquo;</blockquote>
-        <p class="testimonial-author">&mdash; Samuel, Director of Ideal Fitouts</p>
-      </div>
-    </div>
-  </section>
+  <!-- TESTIMONIAL: Add a real client review here when available -->
 
   <div class="divider"></div>
 
@@ -1320,7 +1310,7 @@
         <p>Get in touch today. We&rsquo;ll work with you from design through to completion.</p>
         <div class="cta-actions">
           <a href="#contact" class="btn btn-primary">
-            Start Your Project
+            Get a Free Quote
             <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
           </a>
           <a href="tel:+642102483801" class="btn btn-outline">
